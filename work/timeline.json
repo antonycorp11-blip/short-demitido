@@ -1,0 +1,17 @@
+{
+  "fps": 30,
+  "frames": 1395,
+  "note": "Frames = seconds*30. Speech starts at f92 (3.06 s); f0-91 is a silent intro on the hook image (music only). Speech ends f1313; f1314-1394 is the tail (final gag + hold). Spans for s4-s6 between 19.6 s and 27.5 s are estimated from pauses (ASR garbled there).",
+  "sentences": [
+    {"id": 1, "f0": 92,   "f1": 273,  "text": "Eu criei um jogo com inteligência artificial… e fui DEMITIDO pelos próprios personagens que eu mesmo inventei!", "keys": {"DEMITIDO": 169, "personagens": 208, "inventei": 243}},
+    {"id": 2, "f0": 273,  "f1": 375,  "text": "Tudo começou quando eu pedi: Cria um jogo simples de mineração.", "keys": {"pedi": 303, "Cria": 312, "mineração": 357}},
+    {"id": 3, "f0": 389,  "f1": 524,  "text": "Cinco segundos depois, um minerador parou de trabalhar e exigiu férias.", "keys": {"Cinco segundos": 389, "minerador": 442, "parou": 455, "férias": 506}},
+    {"id": 4, "f0": 528,  "f1": 633,  "text": "Mandei a IA resolver. Ela criou um RH.", "keys": {"Mandei": 538, "resolver": 565, "Ela criou": 590, "RH": 615}},
+    {"id": 5, "f0": 636,  "f1": 825,  "text": "O RH decidiu que os personagens estavam sendo explorados… e organizou uma greve!", "keys": {"explorados": 745, "organizou": 775, "greve": 805}},
+    {"id": 6, "f0": 825,  "f1": 923,  "text": "Desesperado, eu mandei: Acaba com essa greve AGORA!", "keys": {"Desesperado": 830, "mandei": 854, "greve": 904, "AGORA": 913}},
+    {"id": 7, "f0": 938,  "f1": 1000, "text": "Aí a IA respondeu: Problema resolvido.", "keys": {"respondeu": 949, "Problema": 973, "resolvido": 980}},
+    {"id": 8, "f0": 1012, "f1": 1129, "text": "Até que apareceu uma mensagem: Você foi demitido.", "keys": {"apareceu": 1031, "mensagem": 1049, "Você": 1073, "demitido": 1100}},
+    {"id": 9, "f0": 1129, "f1": 1237, "text": "E outra: Seu primeiro turno começa em cinco minutos.", "keys": {"outra": 1152, "turno": 1184, "cinco minutos": 1222}},
+    {"id": 10, "f0": 1253, "f1": 1313, "text": "Pera aí… como assim MEU turno?!", "keys": {"Peraí": 1253, "como assim": 1280, "MEU": 1291, "turno": 1297}}
+  ]
+}

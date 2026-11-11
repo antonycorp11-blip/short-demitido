@@ -1,0 +1,27 @@
+{
+ "duration": 46.506667,
+ "frames30": 1395,
+ "source": "whisper",
+ "segments": [
+  [
+   1.88596,
+   2.02998
+  ],
+  [
+   2.96756,
+   44.5841
+  ]
+ ],
+ "phrases": [
+  {
+   "text": "If you found it helpful,",
+   "s": 2.2,
+   "e": 6.38
+  },
+  {
+   "text": "please subscribe to this video and click the bell to see more parae komansimyotulu.",
+   "s": 6.54,
+   "e": 43.52
+  }
+ ]
+}
