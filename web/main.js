@@ -156,15 +156,15 @@ mineParts.pop();
 add(tbox(2.7,2.7,2.2,1),M.plaster,0,1.35,0,booth);
 add(tbox(3,.3,2.5,.7),orange,0,2.85,0,booth);
 add(box(1,.9,.06),dark,0,1.45,1.14,booth);
-textPlane('RH',1.5,.53,'#4e3544','#f4ead2',0,2.43,1.17,booth);
+const boothSign=textPlane('RH',1.5,.53,'#4e3544','#f4ead2',0,2.43,1.17,booth);
 const chairs=new THREE.Group();world.add(chairs);
-function chair(x,z,col){const c=new THREE.Group();c.position.set(x,0,z);chairs.add(c);
+function chair(x,z,col){const c=new THREE.Group();c.position.set(x,0,z);c.rotation.y=.32;chairs.add(c);
   // Low, long chaise silhouette. Performers stand at least 0.6 m in front.
   add(tbox(.95,.12,1.75,.5),solid(col),0,.38,.15,c);
   const back=add(tbox(.95,.12,1.0,.5),solid(col),0,.82,-.65,c);back.rotation.x=-.78;
   for(const sx of [-.39,.39])for(const zz of [-.43,.76])add(tbox(.08,.5,.08),beam,sx,.22,zz,c);
 }
-chair(.2,-14.2,'#66bcd0');chair(2,-14.6,'#f5ca58');chair(3.8,-14.2,'#e892a3');chair(4.5,-14.7,'#95c36d');
+chair(.45,-14.2,'#66bcd0');chair(1.45,-14.2,'#f5ca58');chair(2.75,-14.2,'#e892a3');chair(3.55,-14.2,'#95c36d');
 const clouds=[];
 for(let i=0;i<6;i++){const x=-25+i*10,z=-55-(i%2)*9;for(let j=0;j<3;j++){const c=add(new THREE.SphereGeometry(1.4,12,8),solid('#eff7fc'),x+j*.9,10+(i%3)*1.8,z,world,{cast:false});c.scale.set(1.6,.6,.7);}}
 for(let i=0;i<8;i++){const x=-30+i*9;const m=add(new THREE.ConeGeometry(6+(i%3)*2,14+(i%3)*2,5),solid('#8ba9b9'),x,5,-55-i%3*5,world,{cast:false});add(new THREE.ConeGeometry(2.4,3.7,5),solid('#eef7fa'),x,12+(i%3),-55-i%3*5,world,{cast:false});}
@@ -264,6 +264,7 @@ function worldState(S,f){
  rails.visible=false;
  if(shotAt(f).id===10)cart.visible=false;
  booth.visible=S.rh>.001 && shotAt(f).id!==10;booth.scale.setScalar(Math.max(0,S.rh));
+ boothSign.visible=!(shotAt(f).id===5 && f>=750);
  chairs.visible=S.chairs>.001;chairs.scale.setScalar(Math.max(0,S.chairs));
  drawScreen(S,f);
  monitorGlow.material.opacity=.05+.025*Math.sin(f*.15);
