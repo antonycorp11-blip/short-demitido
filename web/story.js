@@ -49,7 +49,7 @@ export const actorsAt=(f,T)=>{
  if(s.id===1) creator({expr:f>=167?'shock':'smile',R:f>=167?'cheek':'thumb',headTilt:f>=167?6:undefined});
  if(s.id===2) {creator({R:'point',expr:'smile'}); if(f>348) miners('work');}
  if(s.id===3){out.push(actor(T,'MINEIRO_B',f,[1.4,0,-12.2],{seed:12,expr:'stubborn',L:f>=453?'cross':'hang',R:f>=504?'up':'hang',prop:f<504?'pickaxe':undefined,sign:f>=504?'FÉRIAS JÁ!':undefined}));}
- if(s.id===4){if(f<588) creator({R:'temple',expr:'nervous',swirl:q(f*.2,1)});else{miners('work');out.push(actor(T,'RH',f,[4.75,0,-12.1],{seed:22,expr:'neutral',prop:'clipboard',R:'hang'}));}}
+ if(s.id===4){if(f<615) creator({R:'temple',expr:'nervous',swirl:q(f*.2,1)});if(f>=588){miners('work');out.push(actor(T,'RH',f,[4.75,0,-12.1],{seed:22,expr:'neutral',prop:'clipboard',R:'hang'}));}}
  if(s.id===5){const march=clamp((f-744)/29);miners(f>=773?'strike':'work',march);out.push(actor(T,'RH',f,[4.75-march,0,-12.1+.8*march],{seed:22,expr:'stern',prop:'clipboard',R:'hang'}));}
  if(s.id===6) creator({expr:'panic',L:'temple',R:f>=909?'up':'temple',swirl:q(f*.22,1),bob:f>=911&&f<916?.03:undefined});
  if(s.id===7) creator({expr:f>=978?'smile':'nervous',R:'thumb'});
