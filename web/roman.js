@@ -244,14 +244,13 @@ export const romanFront = (p, key, opts = {}) => {
     p.stroke([[cx-2*u,hc-8*u],[cx+2*u,hc-8*u]],3*u,"#252330");
   }
   if (opts.prop === "pickaxe") {
-    const [gripX,gripY]=arms[1].pts[2], hx=cx+85*u, hy=torsoBot-.32*HH;
-    // The raised hand grips a diagonal handle; the steel head stays beside the hip.
-    p.band([[gripX,gripY],[hx+11*u,hy+51*u]],"#7a5430",7*u,2*u,"round");
-    p.poly([[hx-48*u,hy+11*u],[hx-23*u,hy-5*u],[hx-8*u,hy-12*u],
-      [hx+15*u,hy-12*u],[hx+42*u,hy+1*u],[hx+55*u,hy+17*u],
-      [hx+24*u,hy+6*u],[hx-10*u,hy+3*u]],"#87929d",3*u);
-    p.stroke([[hx-31*u,hy+1*u],[hx-4*u,hy-7*u],[hx+23*u,hy-4*u]],3*u,"#d9e1e5");
-    p.band([[hx,hy-9*u],[hx+3*u,hy+12*u]],"#424d58",8*u,1.5*u);
+    // Keep the whole tool beside its owner, clear of the torso and neighbours.
+    const hx=cx+94*u, hy=torsoBot-.13*HH;
+    p.band([[hx+8*u,hy+8*u],[hx+13*u,sole-15*u]],"#7a5430",7*u,2*u,"round");
+    p.poly([[hx-32*u,hy+7*u],[hx-17*u,hy-7*u],[hx+4*u,hy-11*u],
+      [hx+26*u,hy-7*u],[hx+40*u,hy+7*u],[hx+19*u,hy+1*u],
+      [hx-8*u,hy+2*u]],"#87929d",3*u);
+    p.stroke([[hx-24*u,hy+3*u],[hx+2*u,hy-7*u],[hx+26*u,hy-3*u]],3*u,"#d9e1e5");
   }
   if (opts.prop === "clipboard") {
     p.poly(rrect(cx+25*u,chin+.5*HH,cx+68*u,chin+1.07*HH,3*u),"#9d7546",3*u);

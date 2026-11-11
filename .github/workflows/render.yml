@@ -61,4 +61,7 @@ jobs:
           path: |
             out/*.mp4
             out/qa_sheet.jpg
+            out/voz_limpa.wav
+            out/trilha.wav
+            out/efeitos.wav
           retention-days: 30

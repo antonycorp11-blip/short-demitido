@@ -102,9 +102,8 @@ add(tbox(1.25,.055,.42,.5),dark,0,1.17,1.03,desk);
 for(let i=0;i<12;i++)add(box(.065,.01,.04),solid('#aab8c6'),-.48+i*.09,1.207,1.03,desk,{cast:false});
 add(new THREE.CylinderGeometry(.13,.13,.3,12),solid('#f1e0b8'),1.25,1.28,1,desk);
 const handle=add(new THREE.TorusGeometry(.11,.025,7,12),solid('#f1e0b8'),1.39,1.3,1,desk);handle.rotation.y=Math.PI/2;
-add(tbox(.95,.12,.95),dark,0,.17,1.6,desk);
-add(tbox(.14,1,.14),dark,0,.65,1.45,desk);
-add(tbox(1.05,.14,.17),dark,0,1.05,1.6,desk);
+// The creator stands in front of the desk. A foreground chair used to cut
+// through the flat character card, so this workstation has no chair.
 const monitor=new THREE.Group();monitor.position.set(-3,2.45,-.85);world.add(monitor);
 add(box(3.5,2.7,.22),dark,0,0,0,monitor);
 add(box(3.22,2.42,.015),solid('#43506d'),0,0,.13,monitor,{cast:false});
@@ -137,10 +136,13 @@ const tunnel=part(2,0,-18.0);
 for(const x of [-2.05,2.05])add(tbox(.35,3.8,.45,.5),beam,x,1.9,0,tunnel);
 add(tbox(4.6,.45,.5,.5),beam,0,3.7,0,tunnel);
 function textPlane(text,w,h,fg,bg,x,y,z,parent){const c=document.createElement('canvas');c.width=512;c.height=160;const g=c.getContext('2d');g.fillStyle=bg;g.fillRect(0,0,512,160);g.strokeStyle='#3c2c23';g.lineWidth=17;g.strokeRect(8,8,496,144);g.fillStyle=fg;g.font='900 90px Arial';g.textAlign='center';g.textBaseline='middle';g.fillText(text,256,84);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return add(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:t,side:THREE.DoubleSide}),x,y,z,parent,{cast:false});}
-textPlane('MINA',2.65,.7,'#fff2c7','#78502c',0,4.22,.27,tunnel);
+// The tunnel arch itself identifies the mine; a high sign was cropped by
+// several moving cameras and is intentionally omitted.
 const rails=part(2,0,-12);
 for(const x of [-.7,.7])add(tbox(.08,.08,10,.4),solid('#6d747d'),x,.055,1,rails);
 for(let i=0;i<13;i++)add(tbox(1.9,.1,.27,.6),wood,0,.01,5.6-i*.75,rails);
+// The track occupied the actors' feet and the final creator reveal.
+rails.visible=false;
 const cart=part(4.8,0,-14.6);
 add(tbox(1.8,.9,1.2,.6),solid('#6d7480'),0,.86,0,cart);
 for(const x of [-.65,.65])for(const z of [-.42,.42]){const wh=add(new THREE.CylinderGeometry(.21,.21,.12,12),dark,x,.27,z,cart);wh.rotation.z=Math.PI/2;}
@@ -156,7 +158,12 @@ add(tbox(3,.3,2.5,.7),orange,0,2.85,0,booth);
 add(box(1,.9,.06),dark,0,1.45,1.14,booth);
 textPlane('RH',1.5,.53,'#4e3544','#f4ead2',0,2.43,1.17,booth);
 const chairs=new THREE.Group();world.add(chairs);
-function chair(x,z,col){const c=new THREE.Group();c.position.set(x,0,z);chairs.add(c);const seat=add(tbox(.9,.1,1.4,.5),solid(col),0,.42,0,c);const back=add(tbox(.9,.1,1.4,.5),solid(col),0,1.05,-.58,c);back.rotation.x=-.48;for(const sx of [-.38,.38]){const leg=add(tbox(.08,.6,.08),beam,sx,.3,.5,c);leg.rotation.x=.25;}}
+function chair(x,z,col){const c=new THREE.Group();c.position.set(x,0,z);chairs.add(c);
+  // Low, long chaise silhouette. Performers stand at least 0.6 m in front.
+  add(tbox(.95,.12,1.75,.5),solid(col),0,.38,.15,c);
+  const back=add(tbox(.95,.12,1.0,.5),solid(col),0,.82,-.65,c);back.rotation.x=-.78;
+  for(const sx of [-.39,.39])for(const zz of [-.43,.76])add(tbox(.08,.5,.08),beam,sx,.22,zz,c);
+}
 chair(.2,-14.2,'#66bcd0');chair(2,-14.6,'#f5ca58');chair(3.8,-14.2,'#e892a3');chair(4.5,-14.7,'#95c36d');
 const clouds=[];
 for(let i=0;i<6;i++){const x=-25+i*10,z=-55-(i%2)*9;for(let j=0;j<3;j++){const c=add(new THREE.SphereGeometry(1.4,12,8),solid('#eff7fc'),x+j*.9,10+(i%3)*1.8,z,world,{cast:false});c.scale.set(1.6,.6,.7);}}
@@ -254,7 +261,9 @@ function placeSun(L, focus) {
 
 function worldState(S,f){
  mineParts.forEach((p,i)=>{const k=Math.max(0,S.mine[i]);p.visible=k>.001;p.scale.setScalar(k);});
- booth.visible=S.rh>.001;booth.scale.setScalar(Math.max(0,S.rh));
+ rails.visible=false;
+ if(shotAt(f).id===10)cart.visible=false;
+ booth.visible=S.rh>.001 && shotAt(f).id!==10;booth.scale.setScalar(Math.max(0,S.rh));
  chairs.visible=S.chairs>.001;chairs.scale.setScalar(Math.max(0,S.chairs));
  drawScreen(S,f);
  monitorGlow.material.opacity=.05+.025*Math.sin(f*.15);
